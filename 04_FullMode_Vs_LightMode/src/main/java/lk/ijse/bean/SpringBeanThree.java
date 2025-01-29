@@ -1,4 +1,10 @@
 package lk.ijse.bean;
 
-public class SpringBeanThree {
+import org.springframework.beans.factory.BeanNameAware;
+
+public class SpringBeanThree implements BeanNameAware {
+    @Override
+    public void setBeanName(String name) {
+        System.out.println("SpringBeanThree Bean Name Set");
+    }
 }

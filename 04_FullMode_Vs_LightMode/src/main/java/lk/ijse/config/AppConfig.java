@@ -24,10 +24,13 @@ public class AppConfig {
         return new SpringBeanTwo();
     }
 */
+/*
     @Bean
     public SpringBeanTwo getSpringBeanTwo(){
         SpringBeanThree springBeanThree1 = new SpringBeanThree();
         SpringBeanThree springBeanThree2 = new SpringBeanThree();
+        System.out.println(springBeanThree1);
+        System.out.println(springBeanThree2);
         return new SpringBeanTwo();
     }
 
@@ -35,4 +38,5 @@ public class AppConfig {
     public SpringBeanThree getSpringBeanThree(){
         return new SpringBeanThree();
     }
+*/
 }

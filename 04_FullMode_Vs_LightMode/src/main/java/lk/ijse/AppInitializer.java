@@ -23,10 +23,12 @@ public class AppInitializer {
         System.out.println(bean4);
         */
 
-        SpringBeanTwo bean1 = context.getBean(SpringBeanTwo.class);
+       /* SpringBeanTwo bean1 = context.getBean(SpringBeanTwo.class);
         System.out.println(bean1);
         SpringBeanTwo bean2 = context.getBean(SpringBeanTwo.class);
-        System.out.println(bean2);
+        System.out.println(bean2);*/
+
+
 
         context.registerShutdownHook();
     }
