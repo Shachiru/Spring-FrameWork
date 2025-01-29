@@ -4,7 +4,7 @@ import lk.ijse.bean.SpringBean1;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-//@Configuration
+@Configuration
 public class AppConfig1 {
     @Bean
     public SpringBean1 springBean1() {
