@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/v1/customer")
 public class CustomerController {
-    private List<CustomerDTO> customers = new ArrayList<>();
+    ArrayList<CustomerDTO> customers = new ArrayList<>();
 
     @PostMapping("save")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
