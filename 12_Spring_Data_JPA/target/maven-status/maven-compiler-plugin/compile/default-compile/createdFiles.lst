@@ -1,0 +1,5 @@
+lk\ijse\entity\Customer.class
+lk\ijse\config\JPAConfig.class
+lk\ijse\config\WebAppConfig.class
+lk\ijse\config\WebRootConfig.class
+lk\ijse\WebAppInitializer.class
