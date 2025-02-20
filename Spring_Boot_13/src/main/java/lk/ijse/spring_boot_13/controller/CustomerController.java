@@ -1,37 +1,36 @@
 package lk.ijse.spring_boot_13.controller;
 
 import lk.ijse.spring_boot_13.dto.CustomerDTO;
-import lk.ijse.spring_boot_13.service.CustomerService;
+import lk.ijse.spring_boot_13.service.impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/customer")
+@CrossOrigin(origins = "*")
 public class CustomerController {
     // property injection
     @Autowired
-    private CustomerService customerService;
+    private CustomerServiceImpl customerServiceImpl;
 
     @PostMapping(path = "save")
     public boolean getCustomer(@RequestBody CustomerDTO customerDTO) {
-        boolean res = customerService.save(customerDTO);
+        boolean res = customerServiceImpl.save(customerDTO);
         return res;
     }
     @GetMapping("getAll")
     public List<CustomerDTO> getAllCustomers() {
-        return customerService.getAllCustomers();
+        return customerServiceImpl.getAllCustomers();
     }
 
     @PutMapping("update")
     public boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
-        return customerService.updateCustomer(customerDTO);
+        return customerServiceImpl.updateCustomer(customerDTO);
     }
 
     @DeleteMapping("delete/{id}")
     public boolean deleteCustomer(@PathVariable int id) {
-        return customerService.deleteCustomer(id);
+        return customerServiceImpl.deleteCustomer(id);
     }
 }
