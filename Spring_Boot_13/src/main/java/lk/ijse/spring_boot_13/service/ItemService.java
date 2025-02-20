@@ -6,9 +6,9 @@ import lk.ijse.spring_boot_13.entity.Item;
 import java.util.List;
 
 public interface ItemService {
-    boolean saveItem(ItemDTO itemDTO);
+    void saveItem(ItemDTO itemDTO);
     List<ItemDTO> getAllItems();
-    boolean updateItem(ItemDTO itemDTO);
-    boolean deleteItem(int id);
+    void updateItem(ItemDTO itemDTO);
+    void deleteItem(int id);
     Item findById(int itemId);
 }

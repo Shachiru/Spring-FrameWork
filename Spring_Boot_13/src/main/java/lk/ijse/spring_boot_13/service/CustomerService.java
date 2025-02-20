@@ -6,9 +6,9 @@ import lk.ijse.spring_boot_13.entity.Customer;
 import java.util.List;
 
 public interface CustomerService {
-    boolean save(CustomerDTO customerDTO);
+    void save(CustomerDTO customerDTO);
     List<CustomerDTO> getAllCustomers();
-    boolean updateCustomer(CustomerDTO customerDTO);
-    boolean deleteCustomer(int id);
+    void updateCustomer(CustomerDTO customerDTO);
+    void deleteCustomer(int id);
     Customer findById(int customerId);
 }

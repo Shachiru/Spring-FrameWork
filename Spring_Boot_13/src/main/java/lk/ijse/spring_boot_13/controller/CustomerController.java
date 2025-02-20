@@ -1,42 +1,41 @@
 package lk.ijse.spring_boot_13.controller;
 
 import lk.ijse.spring_boot_13.dto.CustomerDTO;
+import lk.ijse.spring_boot_13.service.CustomerService;
 import lk.ijse.spring_boot_13.service.impl.CustomerServiceImpl;
 import lk.ijse.spring_boot_13.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/customer")
+@RequestMapping(value = "api/v1/customer")
 @CrossOrigin(origins = "*")
 public class CustomerController {
-    // property injection
     @Autowired
     private CustomerServiceImpl customerServiceImpl;
+    @Autowired
+    private CustomerService customerService;
 
     @PostMapping(path = "save")
-    public ResponseUtil getCustomer(@RequestBody CustomerDTO customerDTO) {
-        boolean res = customerServiceImpl.save(customerDTO);
-        if (res) {
-            return new ResponseUtil(201,"Customer is saved",null);
-        }
-        return new ResponseUtil(409,"Already exist",null);
+    public ResponseUtil saveCustomer(@RequestBody CustomerDTO customerDTO) {
+        customerServiceImpl.save(customerDTO);
+        return new ResponseUtil(201, "Customer is saved", null);
     }
 
-    @GetMapping("getAll")
-    public List<CustomerDTO> getAllCustomers() {
-        return customerServiceImpl.getAllCustomers();
+    @GetMapping(path = "getAll")
+    public ResponseUtil getAllCustomers() {
+        return new ResponseUtil(200, "Success", customerService.getAllCustomers());
     }
 
-    @PutMapping("update")
-    public boolean updateCustomer(@RequestBody CustomerDTO customerDTO) {
-        return customerServiceImpl.updateCustomer(customerDTO);
+    @PutMapping(path = "update")
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO customerDTO) {
+        customerServiceImpl.updateCustomer(customerDTO);
+        return new ResponseUtil(200, "Customer updated successfully", null);
     }
 
-    @DeleteMapping("delete/{id}")
-    public boolean deleteCustomer(@PathVariable int id) {
-        return customerServiceImpl.deleteCustomer(id);
+    @DeleteMapping(path = "delete/{id}")
+    public ResponseUtil deleteCustomer(@PathVariable int id) {
+        customerServiceImpl.deleteCustomer(id);
+        return new ResponseUtil(200, "Customer deleted successfully", null);
     }
 }
