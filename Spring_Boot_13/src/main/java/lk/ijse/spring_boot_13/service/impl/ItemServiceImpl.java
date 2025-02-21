@@ -76,4 +76,14 @@ public class ItemServiceImpl implements ItemService {
         Optional<Item> item = itemRepo.findById(itemId);
         return item.orElse(null);
     }
+
+    @Override
+    public ItemDTO getItemById(int id) {
+        Optional<Item> item = itemRepo.findById(id);
+        if (item.isPresent()) {
+            return modelMapper.map(item.get(), ItemDTO.class);
+        } else {
+            throw new RuntimeException("Item not found");
+        }
+    }
 }

@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Management System</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .container {
-            max-width: 900px;
-            margin-top: 30px;
-        }
-        .card {
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .btn-action {
-            margin-right: 5px;
-        }
-        .table-responsive {
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Management System</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container {
+      max-width: 900px;
+      margin-top: 30px;
+    }
+    .card {
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .btn-action {
+      margin-right: 5px;
+    }
+    .table-responsive {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
-    <h1 class="text-center mb-4">Item Management System</h1>
+  <h1 class="text-center mb-4">Item Management System</h1>
 
-    <!-- Item Form Card -->
-    <div class="card">
-        <div class="card-header bg-primary text-white">
-            <h5 id="formTitle">Add New Item</h5>
-        </div>
-        <div class="card-body">
-            <form id="itemForm">
-                <div class="mb-3">
-                    <label for="itemId" class="form-label">Item ID</label>
-                    <input type="number" class="form-control" id="itemId" required>
-                </div>
-                <div class="mb-3">
-                    <label for="itemDescription" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="itemDescription" required>
-                </div>
-                <div class="mb-3">
-                    <label for="itemQuantity" class="form-label">Quantity</label>
-                    <input type="number" class="form-control" id="itemQuantity" required>
-                </div>
-                <div class="mb-3">
-                    <label for="itemPrice" class="form-label">Unit Price</label>
-                    <input type="number" step="0.01" class="form-control" id="itemPrice" required>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <button type="button" id="clearBtn" class="btn btn-secondary me-2">Clear</button>
-                    <button type="submit" id="saveBtn" class="btn btn-primary">Save Item</button>
-                </div>
-            </form>
-        </div>
+  <!-- Item Form Card -->
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h5 id="formTitle">Add New Item</h5>
     </div>
+    <div class="card-body">
+      <form id="itemForm">
+        <input type="hidden" id="editMode" value="false">
+        <div class="mb-3">
+          <label for="itemId" class="form-label">Item ID</label>
+          <input type="number" class="form-control" id="itemId" required>
+        </div>
+        <div class="mb-3">
+          <label for="itemDescription" class="form-label">Description</label>
+          <input type="text" class="form-control" id="itemDescription" required>
+        </div>
+        <div class="mb-3">
+          <label for="itemQuantity" class="form-label">Quantity</label>
+          <input type="number" class="form-control" id="itemQuantity" required>
+        </div>
+        <div class="mb-3">
+          <label for="itemPrice" class="form-label">Unit Price</label>
+          <input type="number" step="0.01" class="form-control" id="itemPrice" required>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="button" id="clearBtn" class="btn btn-secondary me-2">Clear</button>
+          <button type="submit" id="saveBtn" class="btn btn-primary">Save Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-    <!-- Item List Card -->
-    <div class="card">
-        <div class="card-header bg-info text-white">
-            <h5>Item List</h5>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Unit Price</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody id="itemTableBody">
-                    </tbody>
-                </table>
-            </div>
-        </div>
+  <!-- Item List Card -->
+  <div class="card">
+    <div class="card-header bg-info text-white">
+      <h5>Item List</h5>
     </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody id="itemTableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="alertBox" class="alert" style="display: none;"></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
@@ -89,50 +92,62 @@
   $(document).ready(function () {
     const baseUrl = "http://localhost:8080/api/v1/item";
 
+    // Load all items on page load
     loadItems();
 
+    // Handle form submission for adding/updating an item
     $("#itemForm").submit(function (e) {
       e.preventDefault();
+      const isEditMode = $("#editMode").val() === "true";
+      const itemId = $("#itemId").val();
+
       const itemData = {
-        id: $("#itemId").val(),
+        id: itemId,
         description: $("#itemDescription").val(),
         quantity: $("#itemQuantity").val(),
-        price: $("#itemPrice").val()
+        unitPrice: $("#itemPrice").val()
       };
 
+      console.log("Operation type:", isEditMode ? "UPDATE (PUT)" : "CREATE (POST)");
+      console.log("Sending data:", itemData);
+
       $.ajax({
-        url: baseUrl + "/save",
-        type: "POST",
+        url: baseUrl + (isEditMode ? "/update" : "/save"),
+        type: isEditMode ? "PUT" : "POST",
         contentType: "application/json",
         data: JSON.stringify(itemData),
-        success: function () {
+        success: function (response) {
+          console.log("Success response:", response);
           loadItems();
           clearForm();
-          showAlert("Item saved successfully!", "success");
+          showAlert(isEditMode ? "Item updated successfully!" : "Item saved successfully!", "success");
         },
-        error: function (xhr) {
-          showAlert("Error: " + xhr.responseText, "error");
+        error: function (xhr, status, error) {
+          console.error("Error details:", status, error);
+          console.error("Response:", xhr.responseText);
+          showAlert("Error: " + (xhr.responseText || "Unknown error occurred"), "error");
         }
       });
     });
 
+    // Load all items from the server
     function loadItems() {
       $.ajax({
-        url: baseUrl + "/getall",
+        url: baseUrl + "/getAll",
         type: "GET",
         success: function (response) {
           $("#itemTableBody").empty();
           $.each(response.data, function (index, item) {
-            let row = `<tr onclick="selectItem(${item.id}, '${item.description}', ${item.quantity}, ${item.price})">
-                                    <td>${item.id}</td>
-                                    <td>${item.description}</td>
-                                    <td>${item.quantity}</td>
-                                    <td>${item.price}</td>
-                                    <td>
-                                        <button class='btn btn-warning btn-sm' onclick='editItem(${item.id})'>Edit</button>
-                                        <button class='btn btn-danger btn-sm' onclick='deleteItem(${item.id})'>Delete</button>
-                                    </td>
-                                </tr>`;
+            let row = `<tr>
+                       <td>${item.id}</td>
+                       <td>${item.description}</td>
+                       <td>${item.quantity}</td>
+                       <td>${item.unitPrice}</td>
+                       <td>
+                           <button class='btn btn-warning btn-sm' onclick='editItem(${item.id}, event)'>Edit</button>
+                           <button class='btn btn-danger btn-sm' onclick='deleteItem(${item.id})'>Delete</button>
+                       </td>
+                   </tr>`;
             $("#itemTableBody").append(row);
           });
         },
@@ -142,15 +157,16 @@
       });
     }
 
-    $("#clearBtn").click(function () {
-      clearForm();
-    });
-
+    // Clear the form and reset to "Add New Item" mode
     function clearForm() {
       $("#itemForm")[0].reset();
       $("#itemId").prop("readonly", false);
+      $("#editMode").val("false");
+      $("#formTitle").text("Add New Item");
+      $("#saveBtn").text("Save Item");
     }
 
+    // Delete an item by ID
     window.deleteItem = function (id) {
       if (confirm("Are you sure you want to delete this item?")) {
         $.ajax({
@@ -167,13 +183,35 @@
       }
     };
 
-    window.selectItem = function (id, description, quantity, price) {
-      $("#itemId").val(id).prop("readonly", true);
-      $("#itemDescription").val(description);
-      $("#itemQuantity").val(quantity);
-      $("#itemPrice").val(price);
+    // Edit an item by ID
+    window.editItem = function (id, event) {
+      if (event) {
+        event.stopPropagation();
+      }
+
+      $.ajax({
+        url: baseUrl + "/" + id,
+        type: "GET",
+        success: function (response) {
+          console.log("Edit item response:", response);
+          const item = response.data; // Use `response.data` to access the item object
+
+          // Populate the form fields
+          $("#itemId").val(item.id).prop("readonly", true);
+          $("#itemDescription").val(item.description);
+          $("#itemQuantity").val(item.quantity);
+          $("#itemPrice").val(item.unitPrice); // Ensure this matches the backend field name
+          $("#editMode").val("true");
+          $("#formTitle").text("Edit Item");
+          $("#saveBtn").text("Update Item");
+        },
+        error: function (xhr) {
+          showAlert("Error: " + xhr.responseText, "error");
+        }
+      });
     };
 
+    // Show an alert message
     function showAlert(message, type) {
       let alertBox = $("#alertBox");
       alertBox.text(message).show();
@@ -183,7 +221,6 @@
       }, 2000);
     }
   });
-
 </script>
 </body>
 </html>

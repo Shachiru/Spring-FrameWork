@@ -78,4 +78,15 @@ public class CustomerServiceImpl implements CustomerService {
         return customer.orElse(null);
     }
 
+    @Override
+    public CustomerDTO getCustomerById(int id) {
+        Optional<Customer> customer = customerRepo.findById(id);
+        if (customer.isPresent()) {
+            // Map the customer to CustomerDTO using ModelMapper
+            return modelMapper.map(customer.get(), CustomerDTO.class);
+        } else {
+            throw new RuntimeException("Customer not found");
+        }
+    }
+
 }

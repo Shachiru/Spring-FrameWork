@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "api/v1/customer")
 @CrossOrigin(origins = "*")
 public class CustomerController {
+
     @Autowired
     private CustomerServiceImpl customerServiceImpl;
+
     @Autowired
     private CustomerService customerService;
 
@@ -25,6 +27,12 @@ public class CustomerController {
     @GetMapping(path = "getAll")
     public ResponseUtil getAllCustomers() {
         return new ResponseUtil(200, "Success", customerService.getAllCustomers());
+    }
+
+    @GetMapping(path = "{id}")
+    public ResponseUtil getCustomerById(@PathVariable int id) {
+        CustomerDTO customerDTO = customerService.getCustomerById(id);
+        return new ResponseUtil(200, "Success", customerDTO);
     }
 
     @PutMapping(path = "update")

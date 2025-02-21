@@ -11,4 +11,6 @@ public interface CustomerService {
     void updateCustomer(CustomerDTO customerDTO);
     void deleteCustomer(int id);
     Customer findById(int customerId);
+
+    CustomerDTO getCustomerById(int id);
 }

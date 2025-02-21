@@ -27,6 +27,12 @@ public class ItemController {
         return new ResponseUtil(200, "success", itemService.getAllItems());
     }
 
+    @GetMapping("{id}")
+    public ResponseUtil getItemById(@PathVariable int id) {
+        ItemDTO itemDTO = itemService.getItemById(id);
+        return new ResponseUtil(200, "Success", itemDTO);
+    }
+
     @PutMapping("update")
     public ResponseUtil updateItem(@RequestBody ItemDTO itemDTO) {
         itemServiceImpl.updateItem(itemDTO);
