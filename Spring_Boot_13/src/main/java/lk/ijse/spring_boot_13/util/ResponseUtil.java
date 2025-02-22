@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class ResponseUtil {
     private int code;
     private String message;
-    //most super type
-    private Object data;
+    private Object data;        //most super type
 }
