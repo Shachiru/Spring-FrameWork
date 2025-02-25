@@ -35,21 +35,25 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public ResponseUtil placeOrder(OrderDTO orderDTO) {
-        // Find the customer
-        Customer customer = customerRepository.findById(orderDTO.getCustomerId()).orElseThrow(() -> new RuntimeException("Customer not found"));
+        Customer customer = customerRepository.findById(orderDTO.getCustomerId())
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
 
-        // Create the order
         Order order = new Order();
         order.setCustomer(customer);
         order.setOrderDate(LocalDate.now());
 
-        // Save the order
         Order savedOrder = orderRepository.save(order);
 
-        // Create order details
         List<OrderDetail> orderDetails = new ArrayList<>();
         for (OrderDetailDTO detailDTO : orderDTO.getOrderDetails()) {
-            Item item = itemRepository.findById(detailDTO.getItemId()).orElseThrow(() -> new RuntimeException("Item not found"));
+            Item item = itemRepository.findById(detailDTO.getItemId())
+                    .orElseThrow(() -> new RuntimeException("Item not found"));
+            if (item.getQuantity() < detailDTO.getQuantity()) {
+                throw new RuntimeException("Insufficient stock for item: " + item.getDescription());
+            }
+
+            item.setQuantity(item.getQuantity() - detailDTO.getQuantity());
+            itemRepository.save(item);
 
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setOrder(savedOrder);
@@ -60,9 +64,7 @@ public class OrderServiceImpl implements OrderService {
             orderDetails.add(orderDetail);
         }
 
-        // Save order details
         orderDetailRepository.saveAll(orderDetails);
-
         return new ResponseUtil(201, "Order placed successfully", null);
     }
 }
