@@ -84,4 +84,13 @@ public class OrderServiceImpl implements OrderService {
         return orderDTOs;
     }
 
+    public ResponseUtil deleteOrder(int id) {
+        if (orderRepository.existsById(id)) {
+            orderRepository.deleteById(id);
+            return new ResponseUtil(200, "Order deleted successfully", null);
+        } else {
+            return new ResponseUtil(404, "Order not found", null);
+        }
+    }
+
 }

@@ -26,4 +26,9 @@ public class OrderPlaceController {
         List<OrderDTO> orders = orderService.getAllOrders();
         return new ResponseUtil(200, "Success", orders);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseUtil deleteOrder(@PathVariable("id") int id) {
+        return orderService.deleteOrder(id);
+    }
 }

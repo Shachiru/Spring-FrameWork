@@ -8,4 +8,5 @@ import java.util.List;
 public interface OrderService {
     ResponseUtil placeOrder(OrderDTO orderDTO);
     List<OrderDTO> getAllOrders();
+    ResponseUtil deleteOrder(int id);
 }
