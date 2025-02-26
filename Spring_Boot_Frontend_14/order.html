@@ -96,6 +96,15 @@
 
     loadOrders();
 
+    function setLiveDate() {
+      const currentDate = new Date().toISOString().split('T')[0];
+      $("#orderDate").val(currentDate);
+    }
+
+    setLiveDate();
+
+    setInterval(setLiveDate, 1000);
+
     $("#orderForm").submit(function (e) {
       e.preventDefault();
 
