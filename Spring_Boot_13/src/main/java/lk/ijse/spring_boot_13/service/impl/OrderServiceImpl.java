@@ -67,4 +67,21 @@ public class OrderServiceImpl implements OrderService {
         orderDetailRepository.saveAll(orderDetails);
         return new ResponseUtil(201, "Order placed successfully", null);
     }
+
+    @Override
+    public List<OrderDTO> getAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+
+        for (Order order : orders) {
+            List<OrderDetailDTO> orderDetailDTOs = new ArrayList<>();
+            for (OrderDetail orderDetail : order.getOrderDetails()) {
+                orderDetailDTOs.add(new OrderDetailDTO(orderDetail.getItem().getId(), orderDetail.getQuantity(), orderDetail.getTotalPrice()));
+            }
+            orderDTOs.add(new OrderDTO(order.getId(), order.getCustomer().getId(), order.getOrderDate(), orderDetailDTOs));
+        }
+
+        return orderDTOs;
+    }
+
 }
