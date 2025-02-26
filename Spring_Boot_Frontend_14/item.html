@@ -92,10 +92,8 @@
   $(document).ready(function () {
     const baseUrl = "http://localhost:8080/api/v1/item";
 
-    // Load all items on page load
     loadItems();
 
-    // Handle form submission for adding/updating an item
     $("#itemForm").submit(function (e) {
       e.preventDefault();
       const isEditMode = $("#editMode").val() === "true";
@@ -130,7 +128,6 @@
       });
     });
 
-    // Load all items from the server
     function loadItems() {
       $.ajax({
         url: baseUrl + "/getAll",
@@ -157,7 +154,6 @@
       });
     }
 
-    // Clear the form and reset to "Add New Item" mode
     function clearForm() {
       $("#itemForm")[0].reset();
       $("#itemId").prop("readonly", false);
@@ -166,7 +162,6 @@
       $("#saveBtn").text("Save Item");
     }
 
-    // Delete an item by ID
     window.deleteItem = function (id) {
       if (confirm("Are you sure you want to delete this item?")) {
         $.ajax({
@@ -183,7 +178,6 @@
       }
     };
 
-    // Edit an item by ID
     window.editItem = function (id, event) {
       if (event) {
         event.stopPropagation();
@@ -194,13 +188,12 @@
         type: "GET",
         success: function (response) {
           console.log("Edit item response:", response);
-          const item = response.data; // Use `response.data` to access the item object
+          const item = response.data;
 
-          // Populate the form fields
           $("#itemId").val(item.id).prop("readonly", true);
           $("#itemDescription").val(item.description);
           $("#itemQuantity").val(item.quantity);
-          $("#itemPrice").val(item.unitPrice); // Ensure this matches the backend field name
+          $("#itemPrice").val(item.unitPrice);
           $("#editMode").val("true");
           $("#formTitle").text("Edit Item");
           $("#saveBtn").text("Update Item");
@@ -211,7 +204,6 @@
       });
     };
 
-    // Show an alert message
     function showAlert(message, type) {
       let alertBox = $("#alertBox");
       alertBox.text(message).show();

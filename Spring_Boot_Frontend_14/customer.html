@@ -87,10 +87,8 @@
   $(document).ready(function () {
     const baseUrl = "http://localhost:8080/api/v1/customer";
 
-    // Load all customers on page load
     loadCustomers();
 
-    // Handle form submission for adding/updating a customer
     $("#customerForm").submit(function (e) {
       e.preventDefault();
       const isEditMode = $("#editMode").val() === "true";
@@ -102,7 +100,6 @@
         address: $("#address").val()
       };
 
-      // Determine the request type (POST for add, PUT for update)
       const requestType = isEditMode ? "PUT" : "POST";
 
       $.ajax({
@@ -111,8 +108,8 @@
         contentType: "application/json",
         data: JSON.stringify(customerData),
         success: function () {
-          loadCustomers(); // Refresh the customer list
-          clearForm(); // Clear the form
+          loadCustomers();
+          clearForm();
           showAlert(isEditMode ? "Customer updated successfully!" : "Customer saved successfully!", "success");
         },
         error: function (xhr) {
@@ -121,7 +118,6 @@
       });
     });
 
-    // Load all customers from the server
     function loadCustomers() {
       $.ajax({
         url: baseUrl + "/getAll",
@@ -147,7 +143,6 @@
       });
     }
 
-    // Clear the form and reset to "Add New Customer" mode
     function clearForm() {
       $("#customerForm")[0].reset();
       $("#id").prop("readonly", false);
@@ -156,7 +151,6 @@
       $("#saveBtn").text("Save Customer");
     }
 
-    // Delete a customer by ID
     window.deleteCustomer = function (id) {
       if (confirm("Are you sure you want to delete this customer?")) {
         $.ajax({
@@ -173,9 +167,7 @@
       }
     };
 
-    // Edit a customer by ID
     window.editCustomer = function (id, event) {
-      // Stop event propagation to prevent the row click handler from firing
       if (event) {
         event.stopPropagation();
       }
@@ -184,12 +176,10 @@
         url: baseUrl + "/" + id,
         type: "GET",
         success: function (response) {
-          console.log("Response:", response); // Debugging: Log the response
+          console.log("Response:", response);
 
-          // Ensure the response structure matches what you're accessing
-          const customer = response.data; // Use `response` directly if it doesn't have a `data` property
+          const customer = response.data;
 
-          // Populate the form fields
           $("#id").val(customer.id).prop("readonly", true);
           $("#name").val(customer.name);
           $("#address").val(customer.address);
@@ -203,7 +193,6 @@
       });
     };
 
-    // Show an alert message
     function showAlert(message, type) {
       let alertBox = $("#alertBox");
       alertBox.text(message).show();

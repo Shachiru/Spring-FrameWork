@@ -94,10 +94,8 @@
   $(document).ready(function () {
     const baseUrl = "http://localhost:8080/api/v1/order";
 
-    // Load all orders on page load
     loadOrders();
 
-    // Handle form submission for placing an order
     $("#orderForm").submit(function (e) {
       e.preventDefault();
 
@@ -108,7 +106,7 @@
           {
             itemId: $("#itemId").val(),
             quantity: $("#quantity").val(),
-            totalPrice: 0 // Will be calculated on the server
+            totalPrice: 0
           }
         ]
       };
@@ -134,7 +132,6 @@
       });
     });
 
-    // Load all orders from the server
     function loadOrders() {
       $.ajax({
         url: baseUrl + "/getAll",
@@ -162,12 +159,10 @@
       });
     }
 
-    // Clear the form
     function clearForm() {
       $("#orderForm")[0].reset();
     }
 
-    // Delete an order by ID
     window.deleteOrder = function (id) {
       if (confirm("Are you sure you want to delete this order?")) {
         $.ajax({
@@ -184,7 +179,6 @@
       }
     };
 
-    // Show an alert message
     function showAlert(message, type) {
       let alertBox = $("#alertBox");
       alertBox.text(message).show();
