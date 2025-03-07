@@ -1,0 +1,56 @@
+2025-03-05T11:50:15.085+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Starting Z17SpringBootLogginsApplication using Java 17.0.10 with PID 17884 (D:\GDSE-Modules\Advanced API Development\Spring-FrameWork\Z17_Spring_Boot_Loggins\target\classes started by ASUS in D:\GDSE-Modules\Advanced API Development\Spring-FrameWork)
+2025-03-05T11:50:15.087+05:30 DEBUG 17884 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-05T11:50:15.089+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-03-05T11:50:15.857+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-05T11:50:15.867+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-05T11:50:15.867+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-05T11:50:15.901+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-05T11:50:15.901+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 764 ms
+2025-03-05T11:50:16.190+05:30  WARN 17884 --- [Z17_Spring_Boot_Loggins] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-03-05T11:50:16.207+05:30  INFO 17884 --- [Z17_Spring_Boot_Loggins] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-03-05T11:50:16.221+05:30 ERROR 17884 --- [Z17_Spring_Boot_Loggins] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-03-05T11:50:34.002+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Starting Z17SpringBootLogginsApplication using Java 17.0.10 with PID 17040 (D:\GDSE-Modules\Advanced API Development\Spring-FrameWork\Z17_Spring_Boot_Loggins\target\classes started by ASUS in D:\GDSE-Modules\Advanced API Development\Spring-FrameWork)
+2025-03-05T11:50:34.005+05:30 DEBUG 17040 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-05T11:50:34.006+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-03-05T11:50:34.762+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-05T11:50:34.772+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-05T11:50:34.773+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-05T11:50:34.811+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-05T11:50:34.812+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 753 ms
+2025-03-05T11:50:35.113+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-05T11:50:35.121+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Started Z17SpringBootLogginsApplication in 1.563 seconds (process running for 2.112)
+2025-03-05T11:50:41.422+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-05T11:50:41.422+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-05T11:50:41.423+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-03-05T11:50:41.446+05:30 DEBUG 17040 --- [Z17_Spring_Boot_Loggins] [http-nio-8080-exec-1] l.i.z.controller.DemoController          : debug message
+2025-03-05T11:50:41.447+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [http-nio-8080-exec-1] l.i.z.controller.DemoController          : info message
+2025-03-05T11:50:41.447+05:30  WARN 17040 --- [Z17_Spring_Boot_Loggins] [http-nio-8080-exec-1] l.i.z.controller.DemoController          : warn message
+2025-03-05T11:50:41.447+05:30 ERROR 17040 --- [Z17_Spring_Boot_Loggins] [http-nio-8080-exec-1] l.i.z.controller.DemoController          : error message
+2025-03-05T11:59:52.702+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-03-05T11:59:52.809+05:30  INFO 17040 --- [Z17_Spring_Boot_Loggins] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-03-05T11:59:57.931+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Starting Z17SpringBootLogginsApplication using Java 17.0.10 with PID 11084 (D:\GDSE-Modules\Advanced API Development\Spring-FrameWork\Z17_Spring_Boot_Loggins\target\classes started by ASUS in D:\GDSE-Modules\Advanced API Development\Spring-FrameWork)
+2025-03-05T11:59:57.934+05:30 DEBUG 11084 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Running with Spring Boot v3.4.3, Spring v6.2.3
+2025-03-05T11:59:57.935+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : No active profile set, falling back to 1 default profile: "default"
+2025-03-05T11:59:58.720+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-05T11:59:58.730+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-05T11:59:58.731+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.36]
+2025-03-05T11:59:58.767+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-05T11:59:58.768+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 770 ms
+2025-03-05T11:59:59.055+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-05T11:59:59.063+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [main] l.i.z.Z17SpringBootLogginsApplication    : Started Z17SpringBootLogginsApplication in 1.62 seconds (process running for 2.395)
+2025-03-05T12:11:38.209+05:30  INFO 11084 --- [Z17_Spring_Boot_Loggins] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete

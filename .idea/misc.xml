@@ -16,6 +16,12 @@
         <option value="$PROJECT_DIR$/10_Back_End/pom.xml" />
         <option value="$PROJECT_DIR$/12_Spring_Data_JPA/pom.xml" />
         <option value="$PROJECT_DIR$/Spring_Boot_13/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring_Security_15/pom.xml" />
+        <option value="$PROJECT_DIR$/Spring_Boot_Bean_Validation_16/pom.xml" />
+        <option value="$PROJECT_DIR$/Z16_Spring_Boot_Bean_Validation/pom.xml" />
+        <option value="$PROJECT_DIR$/Z15_Spring_Security/pom.xml" />
+        <option value="$PROJECT_DIR$/Z13_Spring_Boot/pom.xml" />
+        <option value="$PROJECT_DIR$/Z17_Spring_Boot_Loggins/pom.xml" />
       </list>
     </option>
   </component>
